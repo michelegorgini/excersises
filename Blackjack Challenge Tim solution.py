@@ -7,7 +7,7 @@
 # new game so pause the video go away and see if you can come up with a solution and when you're ready to see our
 # version of it come back and and I'll go through that with you pause the video now.....
 
-# NOT ABLE TO SOLVE!!!!!
+# NOT ABLE TO SOLVE!!!!!!
 # I was not able to solve the challenge I copy tim solution in a new Python file
 
 import random
