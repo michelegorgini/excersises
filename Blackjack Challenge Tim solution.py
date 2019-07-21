@@ -59,7 +59,7 @@ def score_hand(hand):
     score = 0
     ace = False
     for next_card in hand:
-        card_value = next_card[0]
+        card_value = next_card[0]   # Why [0] the first of the next_card
         if card_value == 1 and not ace:
             ace = True
             card_value = 11
