@@ -48,7 +48,7 @@ def deal_card(frame):
     # and add it to back of the pack
     deck.append(next_card)
     # add the image to a Label and display the label
-    tkinter.Label(frame, image=next_card[1], relief='raised').pack(side='left') # where ???
+    tkinter.Label(frame, image=next_card[1], relief='raised').pack(side='left') # where ??? and why next_card[1]
     # now return the card's face value
     return next_card
 
