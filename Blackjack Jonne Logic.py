@@ -82,8 +82,14 @@ def deal(player_name):
         active_player['score'] -= 10
         active_player['ace'] = False
 
-
-    compare_scores(players['dealer'],players['player'])
+    if player_name == 'player':
+        player_1 = active_player
+        player_2 = players['dealer']
+    else:
+        player_1 = players['player']
+        player_2 = active_player
+    # compare_scores(players['dealer'],players['player'])
+    compare_scores(player_1, player_2)
 
     active_player['hand'].append(card)
 
@@ -93,72 +99,95 @@ def deal(player_name):
 
 
 def compare_scores(player_1, player_2):
+
     global player_gamewon # this 3 variable need to count the game already won
     global dealer_gamewon
     global player_gamedraw
 
-    # I check if a players overtake 21 without finished == True
-    if(players['player']['score'] > 21) and players['player']['finished'] == False:
-        result_text.set("{} Won2! ".format(players['dealer']['name']))
+    # I check if a player overtake 21 without finished == True
+    if(player_1['score'] > 21) and player_1['finished'] == False:
+        result_text.set("{} Won2! ".format(player_2['name']))
         dealer_gamewon += 1
         disable('player')
         disable('dealer')
+        dealer_gamewon_label.set(dealer_gamewon)
 
     # I compare result when player has finished
-    if(players['player']['finished'] and (players['dealer']['score'] > 21)):
-        result_text.set("{} Won1! ".format(players['player']['name']))
+    if(player_1['finished'] and (player_2['score'] > 21)):
+        result_text.set("{} Won1! ".format(player_1['name']))
         player_gamewon += 1
         disable('dealer')
-    elif(players['player']['finished'] and players['dealer']['score'] > players['player']['score']):
-        result_text.set("{} Won3! ".format(players['dealer']['name']))
+        player_gamewon_label.set(player_gamewon)
+    elif(player_1['finished'] and player_2['score'] > player_1['score']):
+        result_text.set("{} Won3! ".format(player_2['name']))
         dealer_gamewon += 1
         # code below: If dealer win i disable botton dealer
         disable('dealer')
-    elif(players['player']['finished'] and players['dealer']['score'] == 21 and players['player']['score'] == 21):
+        dealer_gamewon_label.set(dealer_gamewon)
+    elif(player_1['finished'] and player_2['score'] == 21 and player_1['score'] == 21):
         result_text.set("draw")
         player_gamedraw += 1
         disable('dealer')
+        player_gamedraw_label.set(player_gamedraw)
 
     # I compare result when player and dealer has finished
-    if(players['dealer']['finished'] and players['dealer']['finished']):
-        if(players['dealer']['score'] > players['player']['score']):
-            result_text.set("{} Won5! ".format(players['dealer']['name']))
+    if(player_1['finished'] and player_2['finished']):
+        if(player_2['score'] > player_1['score']):
+            result_text.set("{} Won5! ".format(player_2['name']))
             dealer_gamewon += 1
-        elif (players['dealer']['score'] < players['player']['score']):
-            result_text.set("{} Won6! ".format(players['player']['name']))
+            dealer_gamewon_label.set(dealer_gamewon)
+        elif (player_2['score'] < player_1['score']):
+            result_text.set("{} Won6! ".format(player_1['name']))
             player_gamewon += 1
+            player_gamewon_label.set(player_gamewon)
         else:
             result_text.set("Draw")
             player_gamedraw += 1
+            player_gamedraw_label.set(player_gamedraw)
 
-    # tO count how many game won the players or they draw
-    games_won(dealer_gamewon,player_gamewon,player_gamedraw)
+
+
+    print(player_1)
+    print("^"*20)
+    print(player_2)
+    print("+"*20)
+    # if(players['player']['score'] > 21) and players['player']['finished'] == False:
+    #     result_text.set("{} Won2! ".format(players['dealer']['name']))
+    #     dealer_gamewon += 1
+    #     disable('player')
+    #     disable('dealer')
+    #
+    # # I compare result when player has finished
+    # if(players['player']['finished'] and (players['dealer']['score'] > 21)):
+    #     result_text.set("{} Won1! ".format(players['player']['name']))
+    #     player_gamewon += 1
+    #     disable('dealer')
+    # elif(players['player']['finished'] and players['dealer']['score'] > players['player']['score']):
+    #     result_text.set("{} Won3! ".format(players['dealer']['name']))
+    #     dealer_gamewon += 1
+    #     # code below: If dealer win i disable botton dealer
+    #     disable('dealer')
+    # elif(players['player']['finished'] and players['dealer']['score'] == 21 and players['player']['score'] == 21):
+    #     result_text.set("draw")
+    #     player_gamedraw += 1
+    #     disable('dealer')
+    #
+    # # I compare result when player and dealer has finished
+    # if(players['dealer']['finished'] and players['dealer']['finished']):
+    #     if(players['dealer']['score'] > players['player']['score']):
+    #         result_text.set("{} Won5! ".format(players['dealer']['name']))
+    #         dealer_gamewon += 1
+    #     elif (players['dealer']['score'] < players['player']['score']):
+    #         result_text.set("{} Won6! ".format(players['player']['name']))
+    #         player_gamewon += 1
+    #     else:
+    #         result_text.set("Draw")
+    #         player_gamedraw += 1
+    #
+    # # tO count how many game won the players or they draw
+    # games_won(dealer_gamewon,player_gamewon,player_gamedraw)
 
     return(result_text)
-
-
-def games_won(dealer_gamewon,player_gamewon,player_gamedraw): # counts how many game won the players
-    dealer_gamewon_label= dealer_gamewon
-    # tkinter.Label(card_frame, text="Dealer Games Won", background="green", fg='white').grid(row=5, column=0)
-    # tkinter.Label(card_frame, textvariable=dealer_gamewon_label, background="green", fg="white").grid(row=6, column=0)
-
-    player_gamewon_label = player_gamewon
-    # tkinter.Label(card_frame, text="Player Games Won", background="green", fg='white').grid(row=5, column=2)
-    # tkinter.Label(card_frame, textvariable=player_gamewon_label, background="green", fg="white").grid(row=6, column=2)
-
-    player_gamedraw_label = player_gamedraw
-    # tkinter.Label(card_frame, text="Games Draw", background="green", fg='white').grid(row=5, column=1)
-    # tkinter.Label(card_frame, textvariable=player_gamedraw_label, background="green", fg="white").grid(row=6, column=1)
-
-
-    print(player_gamedraw_label)
-    print("###"*20)
-
-    print(dealer_gamewon_label)
-    print("%"*20)
-    print(player_gamewon_label)
-    print("W"*20)
-
 
 
 def stop(player_name):
@@ -215,17 +244,6 @@ def new_game():
     tkinter.Label(card_frame, text="Player", background="green", fg="white").grid(row=2, column=0)
     tkinter.Label(card_frame, textvariable=player_score_label, background="green", fg="white").grid(row=3, column=0)
 
-    dealer_gamewon_label = tkinter.IntVar()
-    tkinter.Label(card_frame, text="Dealer Games Won", background="green", fg='white').grid(row=5, column=0)
-    tkinter.Label(card_frame, textvariable=dealer_gamewon_label, background="green", fg="white").grid(row=6, column=0)
-
-    player_gamewon_label = tkinter.IntVar()
-    tkinter.Label(card_frame, text="Player Games Won", background="green", fg='white').grid(row=5, column=2)
-    tkinter.Label(card_frame, textvariable=player_gamewon_label, background="green", fg="white").grid(row=6, column=2)
-
-    player_gamedraw_label = tkinter.IntVar()
-    tkinter.Label(card_frame, text="Games Draw", background="green", fg='white').grid(row=5, column=1)
-    tkinter.Label(card_frame, textvariable=player_gamedraw_label, background="green", fg="white").grid(row=6, column=1)
 
     players = {
         'dealer' : {
@@ -235,11 +253,7 @@ def new_game():
             'frame': dealer_card_frame,
             'score_label': dealer_score_label,
             'finished': False,
-            'ace' : False,
-            'gamewon': dealer_gamewon,
-            'gamedraw':player_gamedraw,
-            'gamewon_label': dealer_gamewon_label,
-            'gamedraw_label' : player_gamedraw_label
+            'ace' : False
         },
         'player': {
             'name': 'player Michele',
@@ -248,19 +262,9 @@ def new_game():
             'frame': player_card_frame,
             'score_label': player_score_label,
             'finished': False,
-            'ace' : False,
-            'gamewon': player_gamewon,
-            'gamedraw':player_gamedraw,
-            'gamewon_label': player_gamewon_label,
-            'gamedraw_label' : player_gamedraw_label
+            'ace' : False
         }
     }
-    # embedded frame to hold the card images
-
-    # players['player']['gamewon_label']= player_gamewon
-    # players['player']['gamedraw']= player_gamedraw
-    # #tkinter.Label(players['dealer']['frame'], image=card[1], relief='raised').pack(side='left') # where ???
-    # players['dealer']['gamewon_label']= dealer_gamewon
 
     result_text.set("")
 
@@ -290,6 +294,18 @@ result.grid(row=0, column=0, columnspan=3)
 
 card_frame = tkinter.Frame(mainWindow, relief="sunken", borderwidth=1, background="green")
 card_frame.grid(row=1, column=0, sticky='ew', columnspan=3, rowspan=2)
+
+dealer_gamewon_label = tkinter.IntVar()
+tkinter.Label(card_frame, text="Dealer Games Won", background="green", fg='white').grid(row=5, column=0)
+tkinter.Label(card_frame, textvariable=dealer_gamewon_label, background="green", fg="white").grid(row=6, column=0)
+
+player_gamewon_label = tkinter.IntVar()
+tkinter.Label(card_frame, text="Player Games Won", background="green", fg='white').grid(row=5, column=2)
+tkinter.Label(card_frame, textvariable=player_gamewon_label, background="green", fg="white").grid(row=6, column=2)
+
+player_gamedraw_label = tkinter.IntVar()
+tkinter.Label(card_frame, text="Games Draw", background="green", fg='white').grid(row=5, column=1)
+tkinter.Label(card_frame, textvariable=player_gamedraw_label, background="green", fg="white").grid(row=6, column=1)
 
 # embedded frame to hold the card images
 button_frame = tkinter.Frame(mainWindow)
