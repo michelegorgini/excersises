@@ -82,13 +82,14 @@ def deal(player_name):
         active_player['score'] -= 10
         active_player['ace'] = False
 
+
     if player_name == 'player':
         player_1 = active_player
         player_2 = players['dealer']
     else:
         player_1 = players['player']
         player_2 = active_player
-    # compare_scores(players['dealer'],players['player'])
+
     compare_scores(player_1, player_2)
 
     active_player['hand'].append(card)
@@ -96,6 +97,12 @@ def deal(player_name):
     tkinter.Label(active_player['frame'], image=card[1], relief='raised').pack(side='left') # where ???
     active_player['score_label'].set(active_player['score'])
 
+    # if player make 21 I disable player button
+    if(active_player['score'] == 21) and active_player['finished'] == False :
+        stop(player_name)
+
+    print(active_player)
+    print("#"*20)
 
 
 def compare_scores(player_1, player_2):
@@ -103,6 +110,8 @@ def compare_scores(player_1, player_2):
     global player_gamewon # this 3 variable need to count the game already won
     global dealer_gamewon
     global player_gamedraw
+
+
 
     # I check if a player overtake 21 without finished == True
     if(player_1['score'] > 21) and player_1['finished'] == False:
@@ -130,7 +139,7 @@ def compare_scores(player_1, player_2):
         disable('dealer')
         player_gamedraw_label.set(player_gamedraw)
 
-    # I compare result when player and dealer has finished
+    # I compare result when player and dealer have finished
     if(player_1['finished'] and player_2['finished']):
         if(player_2['score'] > player_1['score']):
             result_text.set("{} Won5! ".format(player_2['name']))
@@ -199,7 +208,7 @@ def stop(player_name):
         disable(player_name)  # I disable player botton
     elif player_name == 'dealer':
         disable(player_name)  # I disable dealer botton
-        compare_scores(players['dealer'],players['player'])
+        compare_scores(players['player'],players['dealer'])
 
 
 def disable(player_name):
