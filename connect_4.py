@@ -87,7 +87,7 @@ class Connect4():
                 check =0
         return False
 
-    def check_diagonal_row_left(self,coin_col,coin_row):  # Method to check diagonal=I need: start_row,start_col,end_row
+    def check_diagonal_row_left(self,coin_col,coin_row): # Method to check diagonal=I need: start_row,start_col,end_row
         check=0                                           # 1
         if coin_row == 0 or coin_col == 0:                #   1
             start_row = coin_row                          #     1
