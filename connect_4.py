@@ -194,4 +194,3 @@ while True:
     if check_winner == ("Player 1 wins!") or check_winner == ("Player 2 wins!"):
         won = False
         break
-    game.print_grid(grids)
