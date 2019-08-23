@@ -107,5 +107,4 @@ print(*grids, sep='\n')
 for line in grids[5]:
     print(line)
 
-
 # codewar = Greed is Good
