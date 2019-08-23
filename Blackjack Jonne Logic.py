@@ -97,7 +97,7 @@ def deal(player_name):
     tkinter.Label(active_player['frame'], image=card[1], relief='raised').pack(side='left') # where ???
     active_player['score_label'].set(active_player['score'])
 
-    # if player make 21 I disable player button
+    # if players make 21 I disable players button
     if(active_player['score'] == 21) and active_player['finished'] == False :
         stop(player_name)
 
