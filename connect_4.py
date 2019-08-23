@@ -50,7 +50,7 @@ class Connect4():
             else:
                 return coin_col - 1
 
-    def fix_coin_place(self, coin_col): # Method to fix the coin on the grid
+    def fix_coin_place(self, coin_col): # Method to fix the coin on the grid and get the row
         for i in range((self.row-1), -1,-1):  #start from 5(self.row-1), -1 decrease, -1 decrease of 1
             if grids[i][coin_col] == 0:
                 grids[i][coin_col] = game.coin
@@ -159,7 +159,7 @@ class Connect4():
                 start_col -=1
         return False
 
-    def check_winner(self, coin_pos, coin_row):
+    def check_winner(self, coin_pos, coin_row): # Final Check method
         result = ''
         if (game.check_horizontal(coin_row) == True or
             game.check_vertical(coin_col) == True or
