@@ -169,16 +169,16 @@ class Database:
         print(kwargs)
         pass
 
-        try:
-            db.execute(operation1, parameters1)
-            db.execute(operation2, parameters2)
-        except sqlite3.Error:
-            db.rollback()
-            print("Commit blocked")
-        else:
-            db.commit()
-            print("Commit executed with success")
-            return "ok"
+        # try:
+        #     db.execute(operation1, parameters1)
+        #     db.execute(operation2, parameters2)
+        # except sqlite3.Error:
+        #     db.rollback()
+        #     print("Commit blocked")
+        # else:
+        #     db.commit()
+        #     print("Commit executed with success")
+        #     return "ok"
 
 if __name__ == '__main__':
     sql_database = Database()
