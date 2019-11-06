@@ -64,9 +64,9 @@ def dirReduc(arr):
             reduction.append(arr[j-1])               # I append the last element
             # print(reduction)
             result = reduction
-            return result
-    print(reduction)
-    result = reduction
+            return result                            # I debugged the program step by spep and when arrive at return
+    print(reduction)                                 # result the program doesn't stop but re-start from line 59
+    result = reduction                               # where I re-call my function
     return result
 
 
