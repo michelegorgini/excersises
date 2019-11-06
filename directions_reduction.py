@@ -52,20 +52,16 @@ def dirReduc(arr):
     while len(arr):
         # pippo = save_walk_dict[arr[j-1]]
         # pluto = arr[j]
-        if j < index_end:
-            if save_walk_dict[arr[j-1]] == arr[j]:
-                for num in range(j+1, len(arr)):
-                    reduction.append(arr[num])
-                # reduction.append(arr[len(arr)-1])
-                # print(reduction)
-                # print("?"*20)
-                # print(j)
-                arr = dirReduc(reduction)
+        if j < index_end:  # used to avoid index error
+            if save_walk_dict[arr[j-1]] == arr[j]:   # test if value dictionary (for example element 1) == value
+                for num in range(j+1, len(arr)):     #  next element (element2) . if they are equal I put in reduction
+                    reduction.append(arr[num])       # list all the element starting from (element3) and I recall my
+                arr = dirReduc(reduction)            # function
             else:
-                reduction.append(arr[j-1] )
-                j += 1
+                reduction.append(arr[j-1])           # If they are not equal I put element 1 in reduction list and I
+                j += 1                               # restart my loop
         else:
-            reduction.append(arr[j-1])
+            reduction.append(arr[j-1])               # I append the last element
             # print(reduction)
             result = reduction
             return result
