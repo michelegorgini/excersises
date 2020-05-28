@@ -124,7 +124,7 @@ class Connect4():
                 return
 
             self.next_turn()
-            print("you chose column {0}".format(chosen_column))
+            # print("you chose column {0}".format(chosen_column))
         except ValueError:
             print('invalid input!')
         pass

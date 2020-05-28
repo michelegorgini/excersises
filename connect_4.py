@@ -162,12 +162,12 @@ class Connect4():
     def check_winner(self, coin_pos, coin_row): # Final Check method
         result = ''
         if (game.check_horizontal(coin_row) == True or
-            game.check_vertical(coin_col) == True or
-            game.check_diagonal_row_left(coin_col, coin_row) == True or
-            game.check_diagonal_row_right(coin_col, coin_row) == True):
-                result = ("Player {} wins!".format(game.coin))
-                print(result)
-                return result
+                game.check_vertical(coin_col) == True or
+                game.check_diagonal_row_left(coin_col, coin_row) == True or
+                game.check_diagonal_row_right(coin_col, coin_row) == True):
+            result = ("Player {} wins!".format(game.coin))
+            print(result)
+            return result
         else:
             if game.coin == 1:
                 game.coin = 2

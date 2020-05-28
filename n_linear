@@ -1,0 +1,41 @@
+# Codewar: N Linear
+
+
+def n_linear(m, n):
+    # print(m)
+    # print(n)
+    results = [1]
+    indices = {}
+    new_values = {}
+    count_m = len(m)
+    for i in range(0, count_m):
+        indices[m[i]] = 0
+        new_values[m[i]] = 0
+    # print(indices)
+    # print(new_values)
+    for index_results in range(0, n):
+        min_keys = []
+        for j in range(0, count_m):
+            new_values[m[j]]= (results[indices[m[j]]] * m[j]+1)
+        #print(new_values)
+        min_value = min(new_values.values())
+        #print(min_value)
+        for key, value in new_values.items():
+            if value == min_value:
+                min_keys.append(key)
+        #print(min_keys)
+        results.append(min_value)
+        for min_key in min_keys:
+            indices[min_key]+=1
+    #print(results)
+    return results[n]
+
+
+print(n_linear([2, 3], 10)== 22)
+print(n_linear([3, 2], 10)== 22)
+print(n_linear([5, 7, 8], 10)== 64)
+print(n_linear([5, 7, 8], 11)== 65)
+print(n_linear([2, 3], 20)== 57)
+print(n_linear([2, 3], 30)== 91)
+print(n_linear([2, 3], 50)== 175)
+print(n_linear([2, 3], 100)== 447)

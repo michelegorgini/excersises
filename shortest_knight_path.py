@@ -40,6 +40,7 @@ class ChessBoard:
                            'h': 7}
 
         self.board = [[False] * 8 for i in range(8)]
+        print(*self.board, sep='\n')
         self.start = self.calculate_position(start)
         self.finish = self.calculate_position(finish)
         self.open_set = []
@@ -61,22 +62,22 @@ class ChessBoard:
             count_move = 0
         temp_new_open_set = []
         new_open_set = []
-        if not best_path:
-            for i in range(len(self.open_set)):
-                x = self.open_set[i][0]
-                y = self.open_set[i][1]
-                if x == self.finish_col and y == self.finish_row:
-                    return count_move
-                else:
-                    temp_new_open_set = [[x+i[0], y+i[1]] for i in self.move
-                                         if x + i[0] >= 0 and  x + i[0] < self.col
-                                         if y + i[1] >= 0 and  y + i[1] < self.row]
-                    for field in temp_new_open_set:
-                        new_open_set.append(field)
-                    temp_new_open_set = []
-            count_move += 1
-            self.open_set = new_open_set
-            return self.calculateShortestPath(count_move)
+        # if not best_path:
+        for i in range(len(self.open_set)):
+            x = self.open_set[i][0]
+            y = self.open_set[i][1]
+            if x == self.finish_col and y == self.finish_row:
+                return count_move
+            else:
+                temp_new_open_set = [[x+i[0], y+i[1]] for i in self.move
+                                     if x + i[0] >= 0 and  x + i[0] < self.col
+                                     if y + i[1] >= 0 and  y + i[1] < self.row]
+                for field in temp_new_open_set:
+                    new_open_set.append(field)
+                temp_new_open_set = []
+        count_move += 1
+        self.open_set = new_open_set
+        return self.calculateShortestPath(count_move)
 
 
 def knight(p1, p2):
@@ -86,8 +87,7 @@ def knight(p1, p2):
     return result
 
 
-
-knight('a1', 'f4')
+knight('a1', 'h8')
 
 # arr = [['a1', 'c1', 2], ['a1', 'f1', 3], ['a1', 'f3', 3], ['a1', 'f4', 4], ['a1', 'f7', 5]]
 # for x in arr:
