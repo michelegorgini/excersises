@@ -173,15 +173,15 @@ solveSudokuOpt(inp2)
 printSudoku(inp2)
 print ('Backtracks = ', backtracks)
 
-
-backtracks = 0
-print(solveSudokuOpt(hard))
-printSudoku(hard)
-print ('Backtracks = ', backtracks)
-
-backtracks = 0
-printSudoku(diff)
-print(solveSudokuOpt(diff))
-printSudoku(diff)
-print ('Backtracks = ', backtracks)
-
+#
+# backtracks = 0
+# print(solveSudokuOpt(hard))
+# printSudoku(hard)
+# print ('Backtracks = ', backtracks)
+#
+# backtracks = 0
+# printSudoku(diff)
+# print(solveSudokuOpt(diff))
+# printSudoku(diff)
+# print ('Backtracks = ', backtracks)
+#
