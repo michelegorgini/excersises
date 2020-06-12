@@ -45,6 +45,7 @@ def bestTimeToPartySmart(schedule, ystart, yend): # Exercise 1
 #item of each tuple and ensure that (x, 'end') of one interval
 #is sorted before (x, 'start') of a different tuple.
 def sortlist(tlist):
+    print(tlist, 'enter in sortList')
     for index in range(len(tlist)-1):
         ismall = index
         for i in range(index, len(tlist)):

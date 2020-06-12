@@ -1,4 +1,4 @@
-# Michele: It's not my solution but I add some code to print out some result and unserstand the logic
+# Michele: It's not my solution but I add some code to print out some result and understand the logic
 
 #Programming for the Puzzled -- Srini Devadas
 #A Profusion of Queens
