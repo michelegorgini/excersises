@@ -54,7 +54,7 @@ from itertools import combinations
 
 
 def gerrymander(s):
-    s = s.split('\n')
+    #s = s.split('\n')
     grid = []
     for row in s:
         grid.append(list(row))
@@ -122,6 +122,7 @@ def built_result(final_districts, grid):
     for row in range(len(grid)):
         grid_result = grid_result + ''.join(str(val)for val in grid[row]) + '\n'
     grid_result = grid_result[:-1]
+    #print(grid_result, 'double')
     return grid_result
 
 
@@ -271,7 +272,7 @@ def remain_districts_other_candidate(all_vote_remain):
 
 
 
-s ='OOXXX\nOOXXX\nOOXXX\nOOXXX\nOOXXX'
+#s ='OOXXX\nOOXXX\nOOXXX\nOOXXX\nOOXXX'
 #s ='XOXOX\nOXXOX\nXXOXX\nXOXOX\nOOXOX'
 
 # s = [
@@ -296,47 +297,47 @@ s ='OOXXX\nOOXXX\nOOXXX\nOOXXX\nOOXXX'
 #     'XOXOX',
 #     'XXOXX']
 #
-print(gerrymander(s))
+#print(gerrymander(s))
 
 
 #test.describe('5 Example Tests')
-# s = [
-#     [
-#         'OOXXX',
-#         'OOXXX',
-#         'OOXXX',
-#         'OOXXX',
-#         'OOXXX'],
-#     [
-#         'XOXOX',
-#         'OXXOX',
-#         'XXOXX',
-#         'XOXOX',
-#         'OOXOX'],
-#     [
-#         'OXOOX',
-#         'XXOXO',
-#         'XOXXX',
-#         'XXOXX',
-#         'OXXOO'],
-#     [
-#         'XXOXO',
-#         'XOXOX',
-#         'OXOXO',
-#         'XOXOX',
-#         'XXOXX'],
-#     [
-#         'XXXXX',
-#         'OOOXO',
-#         'XXXOX',
-#         'OOOOO',
-#         'XXXXX']
-# ]
-#
-#gerrymander(s)
-#
-# for i,v in enumerate('\n'.join(v) for v in example_tests):
-#     verify_sol(v,gerrymander(v),i == 3)
-# print('<COMPLETEDIN::>')
+s = [
+    [
+        'OOXXX',
+        'OOXXX',
+        'OOXXX',
+        'OOXXX',
+        'OOXXX'],
+    [
+        'XOXOX',
+        'OXXOX',
+        'XXOXX',
+        'XOXOX',
+        'OOXOX'],
+    [
+        'OXOOX',
+        'XXOXO',
+        'XOXXX',
+        'XXOXX',
+        'OXXOO'],
+    [
+        'XXOXO',
+        'XOXOX',
+        'OXOXO',
+        'XOXOX',
+        'XXOXX'],
+    [
+        'XXXXX',
+        'OOOXO',
+        'XXXOX',
+        'OOOOO',
+        'XXXXX']
+]
+
+gerrymander(s)
+
+for i,v in enumerate('\n'.join(v) for v in s):
+    (v,gerrymander(v),i == 3)
+print('<COMPLETEDIN::>')
 
 
